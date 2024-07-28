@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Covid from "./Componets/Covid";
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <Covid />
     </>
   );
 }
