@@ -33,12 +33,15 @@ const Covid = () => {
 
   // If loading, show a loading message or a loading skeleton
   if (loading) {
-    return <div>Loading...</div>; // You can customize this
+    return <div className="loading">Loading...</div>; // You can customize this
   }
 
   // Render the component once the data is fetched
   return (
     <div id="Card">
+      <h1 className="covid-title">
+        Australia COVID-19 Dashboard: Real-Time Updates
+      </h1>
       <div className="container pt-5">
         <div className="row align-items-stretch">
           {/* Card for displaying country name */}

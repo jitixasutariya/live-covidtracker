@@ -2,7 +2,10 @@
 .c-dashboardInfo {
   margin-bottom: 15px;
 }
-
+.covid-title {
+  text-align: center;
+  padding: 30px;
+}
 /* Wrapper for each dashboard info box */
 .c-dashboardInfo .wrap {
   background: #ffffff;
