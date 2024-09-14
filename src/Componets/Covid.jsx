@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "./Covid.css";
 
-// Define the Covid component
+// Define the Covid component for Australia
 const Covid = () => {
   // State to hold COVID-19 data
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  // Function to fetch COVID-19 data
+  // Function to fetch Australia's COVID-19 data
   const getCovidData = async () => {
     try {
-      // Fetch data from the API
-      const res = await fetch("https://data.covid19india.org/data.json");
+      // Fetch data from the API for Australia
+      const res = await fetch(
+        "https://disease.sh/v3/covid-19/countries/Australia"
+      );
       const resultData = await res.json();
 
-      // Log the first state's data for debugging purposes
-      // console.log(resultData.statewise[0]);
-
       // Update the state with the fetched data
-      setData(resultData.statewise[0]);
+      setData(resultData);
+      setLoading(false); // Set loading to false once data is fetched
     } catch (err) {
       // Log any errors to the console
       console.log(err);
+      setLoading(false); // Stop loading even if there's an error
     }
   };
 
@@ -29,6 +31,12 @@ const Covid = () => {
     getCovidData();
   }, []);
 
+  // If loading, show a loading message or a loading skeleton
+  if (loading) {
+    return <div>Loading...</div>; // You can customize this
+  }
+
+  // Render the component once the data is fetched
   return (
     <div id="Card">
       <div className="container pt-5">
@@ -40,7 +48,7 @@ const Covid = () => {
                 Our Country
               </h4>
               <span className="hind-font caption-12 c-dashboardInfo__count">
-                India
+                Australia
               </span>
             </div>
           </div>
@@ -52,7 +60,7 @@ const Covid = () => {
                 Total Recovered Cases
               </h4>
               <span className="hind-font caption-12 c-dashboardInfo__count">
-                {data.recovered}
+                {data.recovered?.toLocaleString() || "N/A"}
               </span>
             </div>
           </div>
@@ -64,7 +72,7 @@ const Covid = () => {
                 Total Confirmed Cases
               </h4>
               <span className="hind-font caption-12 c-dashboardInfo__count">
-                {data.confirmed}
+                {data.cases?.toLocaleString() || "N/A"}
               </span>
             </div>
           </div>
@@ -76,7 +84,7 @@ const Covid = () => {
                 Total Death Cases
               </h4>
               <span className="hind-font caption-12 c-dashboardInfo__count">
-                {data.deaths}
+                {data.deaths?.toLocaleString() || "N/A"}
               </span>
             </div>
           </div>
@@ -90,7 +98,7 @@ const Covid = () => {
                 Total Active Cases
               </h4>
               <span className="hind-font caption-12 c-dashboardInfo__count">
-                {data.active}
+                {data.active?.toLocaleString() || "N/A"}
               </span>
             </div>
           </div>
@@ -102,7 +110,7 @@ const Covid = () => {
                 Last Updated Time
               </h4>
               <span className="hind-font caption-12 c-dashboardInfo__count">
-                {data.lastupdatedtime}
+                {new Date(data.updated).toLocaleString() || "N/A"}
               </span>
             </div>
           </div>
