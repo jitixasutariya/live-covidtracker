@@ -1,31 +1,53 @@
 /* General Dashboard Info Styles */
 .c-dashboardInfo {
-  margin-bottom: 15px;
+  flex: 1 1 30%; /* Each card takes up approximately one-third of the row */
+  margin: 20px; /* Space between cards */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+  position: relative; /* Allows absolute positioning of the top border */
 }
+
+/* Active card background gradient */
+.c-dashboardInfo.active .wrap {
+  background: linear-gradient(
+    81.67deg,
+    #ff647c 0%,
+    #ff647c 100%
+  ); /* Red gradient background */
+  color: #ffffff; /* Text color to contrast with the background */
+}
+
+/* Title of the dashboard */
 .covid-title {
   text-align: center;
-  padding: 30px;
+  padding: 40px; /* Increased padding around the title */
 }
+
+/* Container styles */
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line */
+  gap: 20px; /* Adds spacing between rows */
+  justify-content: space-between; /* Distributes space between items */
+  padding: 20px; /* Padding around the container */
+}
+
 /* Wrapper for each dashboard info box */
 .c-dashboardInfo .wrap {
-  background: #ffffff;
-  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.7); /* Adds shadow effect */
-  border-radius: 7px; /* Rounds the corners */
-  text-align: center; /* Centers the text */
+  background: #ffffff; /* Default background for non-active cards */
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.7);
+  border-radius: 7px;
+  text-align: center;
   position: relative;
   overflow: hidden;
-  padding: 40px 35px 50px;
-  margin: 20px 60px 35px 60px;
-  height: auto;
-  width: 20%; /* Sets the width of each info box */
-  float: left; /* Aligns boxes horizontally */
+  padding: 50px 40px; /* Increased padding inside each card */
+  box-sizing: border-box; /* Ensures padding is included in the total width/height */
 }
 
 /* Title and subtitle styles */
 .c-dashboardInfo__title,
 .c-dashboardInfo__subInfo {
   color: #6c6c6c;
-  font-size: 1.18em; /* Sets font size */
+  font-size: 1.2em; /* Adjusted font size for titles */
 }
 
 /* Makes all spans block-level elements */
@@ -36,9 +58,9 @@
 /* Styles for the count number */
 .c-dashboardInfo__count {
   font-weight: 600;
-  font-size: 2.5em;
-  line-height: 64px; /* Sets the height of the line */
-  color: #323c43;
+  font-size: 2.8em; /* Increased font size for count numbers */
+  line-height: 70px; /* Adjusted line height */
+  color: #323c43; /* Default text color */
 }
 
 /* After pseudo-element for each wrap */
@@ -54,33 +76,44 @@
 
 /* Individual Dashboard Info Styles */
 .c-dashboardInfo:nth-child(1) .wrap:after {
-  background: linear-gradient(
-    82.59deg,
-    #00c48c 0%,
-    #00a173 100%
-  ); /* Gradient background for first box */
+  background: linear-gradient(82.59deg, #00c48c 0%, #00a173 100%);
 }
 
 .c-dashboardInfo:nth-child(2) .wrap:after {
-  background: linear-gradient(
-    81.67deg,
-    #0084f4 0%,
-    #1a4da2 100%
-  ); /* Gradient background for second box */
+  background: linear-gradient(81.67deg, #0084f4 0%, #1a4da2 100%);
 }
 
 .c-dashboardInfo:nth-child(3) .wrap:after {
-  background: linear-gradient(
-    69.83deg,
-    #0084f4 0%,
-    #00c48c 100%
-  ); /* Gradient background for third box */
+  background: linear-gradient(69.83deg, #0084f4 0%, #00c48c 100%);
 }
 
 .c-dashboardInfo:nth-child(4) .wrap:after {
-  background: linear-gradient(
-    81.67deg,
-    #ff647c 0%,
-    #1f5dc5 100%
-  ); /* Gradient background for fourth box */
+  background: linear-gradient(81.67deg, #ff647c 0%, #1f5dc5 100%);
+}
+.c-dashboardInfo:nth-child(5) .wrap:after {
+  background: linear-gradient(81.67deg, #ce0624 0%, #ff647c 100%);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .c-dashboardInfo {
+    flex: 1 1 45%; /* Two cards per row */
+    margin: 15px; /* Adjusted margin for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .c-dashboardInfo {
+    flex: 1 1 100%; /* Full width for each card */
+    margin: 10px; /* Adjusted margin for smaller screens */
+  }
+
+  .covid-title {
+    font-size: 1.5em; /* Adjust title size for smaller screens */
+    padding: 30px; /* Adjusted padding for the title */
+  }
+
+  .c-dashboardInfo__count {
+    font-size: 2.2em; /* Adjust font size for smaller screens */
+  }
 }
